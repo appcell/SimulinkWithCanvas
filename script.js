@@ -333,8 +333,9 @@ $(document).ready(function () {
         Element.call(this, 'line');
         this.start = {'x': startx, 'y': starty};
         this.width = width;
-        this.srcIsOut = true;//判断线条方向
-        this.isValid = true;//判断线条是否两端都连着端点&两端的端点是一个in一个out
+        this.srcIsOut = true;
+        this.isValid = true;
+
         this.srcBlock = -1;
         this.srcPort = -1;
         this.dstBlock = -1;
