@@ -1,0 +1,43 @@
+img {
+    padding:10px;
+    display:block;
+    color:#636363;
+}
+#my_menu {
+    width:110px;
+    background:#D2E1FF;
+    height:100%;
+}
+
+.menu {
+    cursor:pointer;
+    background:#88ABF1;
+    border:1px solid #ffffff;
+    border-left:6px solid #0072FF;
+    width:100px;
+    height:23px;
+    display:block;
+    line-height:23px;
+    padding-left:4px;
+}
+
+button {
+    color:gray;
+    font:normal bold 16px Time new Roman;
+}
+
+button:hover {
+    background:black;
+}
+
+.comattr {
+    display: none;
+    position: absolute;
+    background: #fff;
+    z-index: 99;
+    box-shadow:  0 0 2px 1px #999;
+}
+
+textarea {
+    display: none;
+}
