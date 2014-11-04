@@ -591,56 +591,5 @@ Model {
     PaperUnits		    \"centimeters\"
     ZoomFactor		    \"100\"
     ReportName		    \"simulink-default.rpt\"
-	Block {
-    BlockType    Sin
-    Name    \"Sine Wave\\nFunction2\"
-    Ports    [1,1]
-    Position    [158,98,233,173]
-    Amplitude    \"1\"
-    frequency    \"1\"
-    bias    \"0\"
-    SineType    \"Time based\"
-    TimeSource    \"Use external signal\"
-    SampleTime    \"0\"
-}
-Block {
-    BlockType    Sum
-    Name    \"Add3\"
-    Ports    [2,1]
-    Position    [285,102,360,177]
-    InputSameDT    off
-    OutDataTypeMode    \"Inherit via internal rule\"
-    OutScaling    \"2^-10\"
-    SaturateOnIntegerOverflow    off
-}
-
-Line { 
-    SrcBlock    \"Sine Wave\\nFunction
-Function2\"
-    SrcPort    1
-    DstBlock    \"Add
-Function3\"
-    DstPort    1
-}
-Block {
-    BlockType    Reference
-    Name    \"Gaussian Noise
-Generator5\"
-    Ports    [0,1]
-    Position    [564,94,639,169]
-    m    \"0\"
-    d    \"1\"
-    s    \"41\"
-    FontName    \"Arial\"
-    FontSize    10
-    SourceBlock    \"commnoisgen2/Gaussian Noise
-Generator\"
-    SourceType    \"Gaussian Noise Generator\"
-    ShowPortLabels    on
-    Ts    \"1\"
-    frameBased    off
-    sampPerFrame    \"1\"
-    orient    off
-}
-}
+	}
 }
