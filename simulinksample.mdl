@@ -1,5 +1,5 @@
 Model {
-  Name			  "simulinksample"
+  Name			  "simulinksampl"
   Version		  6.0
   GraphicalInterface {
     NumRootInports	    0
