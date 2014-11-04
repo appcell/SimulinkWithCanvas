@@ -134,7 +134,7 @@ $(document).ready(function () {
 			case 'gain': {
 			    this.btype = 'Gain';
 			    this.name = 'Gain';
-				this.inPorts = [1,1];
+				this.inPorts = [1];
                 this.inPortPos = [0, 37];
 				this.outPorts = [1];
                 this.outPortPos = [75, 37];
