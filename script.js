@@ -146,7 +146,7 @@ $(document).ready(function () {
 				this.attr1.SaturateOnIntegerOverflow = 'off';
 				break;
 			}
-			case 'fofile': {
+			case 'tofile': {
 			    this.btype = 'ToFile';
 			    this.name = 'To File';
                 this.inPorts = [1];
