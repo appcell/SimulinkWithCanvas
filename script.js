@@ -75,132 +75,106 @@ $(document).ready(function () {
         switch(this.type) {
             case 'sine': {
 			    this.btype = 'Sin';
-			    this.name = 'Sine Wave\\nFunction';
+			    //this.name = 'Sine Wave\\nFunction';
 				this.inPorts = [1];
                 this.inPortPos = [0, 37];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    this.ports = [1, 1];
-				this.position = [this.x, this.y, this.x + this.width, this.y + this.height]
-				this.attr1.SineType = '"Time based"'
+			    //this.ports = [1, 1];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
                 this.attr.Amplitude = 1;//
                 this.attr.frequency = 1;//
                 this.attr.bias = 0;//
-				this.attr1.TimeSource = '"Use external signal"';
-				this.attr1.SampleTime = '"0"';
                 break;
             }
 			case 'add': {
 			    this.btype = 'Sum';
-			    this.name = 'Add';
+			    //this.name = 'Add';
 				this.inPorts = [1,2];
                 this.inPortPos = [0, 20, 0, 55];
 				this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    this.ports = [2, 1];
-				this.position = [this.x, this.y, this.x + this.width, this.y + this.height]
-				this.attr1.InputSameDT = 'off';
-				this.attr1.OutDataTypeMode = '"Inherit via internal rule"';
-				this.attr1.OutScaling = '"2^-10"';
-				this.attr1.SaturateOnIntegerOverflow = 'off';
+			    //this.ports = [2, 1];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
 				break;
 			}
 			case 'product': {
 			    this.btype = 'Product';
-			    this.name = 'Product';
+			    //this.name = 'Product';
 				this.inPorts = [1,2];
                 this.inPortPos = [0, 19, 0, 56];
 				this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    this.ports = [2, 1];
-				this.position = [this.x, this.y, this.x + this.width, this.y + this.height]
-				this.attr1.InputSameDT = 'off';
-				this.attr1.OutDataTypeMode = '"Inherit via internal rule"';
-				this.attr1.SaturateOnIntegerOverflow = 'off';
+			    //this.ports = [2, 1];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
 				break;
 			}
             case 'constant': {
 			    this.btype = 'Constant';
-			    this.name = 'Constant';
+			    //this.name = 'Constant';
 				this.inPorts = [];
                 this.inPortPos = [];
 				this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    this.ports = [0,1];
-				this.position = [this.x, this.y, this.x + this.width, this.y + this.height]
+			    //this.ports = [0,1];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
 				this.attr.Value = 1;//
 				break;
 			}
 			case 'gain': {
 			    this.btype = 'Gain';
-			    this.name = 'Gain';
+			    //this.name = 'Gain';
 				this.inPorts = [1];
                 this.inPortPos = [0, 37];
 				this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    this.ports = [1, 1];
-				this.position = [this.x, this.y, this.x + this.width, this.y + this.height]
+			    //this.ports = [1, 1];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
 			    this.attr.Gain = 1;//
-				this.attr1.ParameterDataTypeMode = '"Inherit via internal rule"';
-				this.attr1.OutDataTypeMode = '"Inherit via internal rule"';
-				this.attr1.SaturateOnIntegerOverflow = 'off';
 				break;
 			}
 			case 'tofile': {
 			    this.btype = 'ToFile';
-			    this.name = 'To File';
+			    //this.name = 'To File';
                 this.inPorts = [1];
                 this.inPortPos = [0, 37];
 				this.outPorts = [];
                 this.outPortPos = [];
-			    this.ports = [1, 0];
-				this.position = [this.x, this.y, this.x + this.width, this.y + this.height]
+			    //this.ports = [1, 0];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
 				this.attr1.Filename = '"simulinksample.mat"';
 				break;
 			}
 			case 'gaussian': {
-			    this.btype = 'Reference';
-			    this.BlockType = 'Reference';
-				this.name = 'Gaussian Noise\\nGenerator';
+			    //【这个显然和下面analog的相同了……【this.btype = 'Reference';
+			    //this.BlockType = 'Reference';
+				//this.name = 'Gaussian Noise\\nGenerator';
                 this.inPorts = [];
                 this.inPortPos = [];
 				this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    this.ports = [0, 1];
-				this.position = [this.x, this.y, this.x + this.width, this.y + this.height]
-				this.attr1.FontName = '\"Arial\"';
-				this.attr1.FontSize = '10';
-				this.attr1.SourceBlock = '"commnoisgen2/Gaussian Noise\\nGenerator"';
-				this.attr1.SourceType = '"Gaussian Noise Generator"';
-				this.attr1.ShowPortLabels = 'on';
+			    //this.ports = [0, 1];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
 				this.attr.m = 0;//
 				this.attr.d = 1;//
 				this.attr.s = 41;//
-				this.attr1.Ts = '"1"';
-				this.attr1.frameBased = 'off';
-				this.attr1.sampPerFrame = '"1"';
-				this.attr1.orient = 'off';
 				break;
 			}
 			case 'analog': {
-			    this.btype = 'Reference';
-			    this.Name = 'Analog'
+			    //this.btype = 'Reference';
+			    //this.name = 'Analog\\nFilter Design';
 				this.outPorts = [1];
                 this.outPortPos = [75, 37];
                 this.inPorts = [1];
                 this.inPortPos = [0, 37];
-			    this.ports = [1, 1];
-				this.position = [this.x, this.y, this.x + this.width, this.y + this.height]
-				this.attr1.FontSize = '10';
-				this.attr1.SourceBlock = '"dsparch4/Analog\\nFilter Design"';
-				this.attr1.SourceType = '"Analog Filter Design"';
-				this.attr1.method = '"Butterworth"';
-				this.attr1.filttype = '"Lowpass"';
+			    //this.ports = [1, 1];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
+				this.attr.filttype = '"Lowpass"';//算了就让它维持低通吧。。
 				this.attr.N = 8;//
 				this.attr.Wlo = 30;//
-				this.attr1.Whi = '"80"';
-				this.attr1.Rp = '"2"';
-				this.attr1.Rs = '"40"';
+				//this.attr1.Whi = '"80"';
+				//this.attr1.Rp = '"2"';
+				//this.attr1.Rs = '"40"';
 				break;
 			}
             default: break;
@@ -312,7 +286,7 @@ $(document).ready(function () {
         popUpWindow.show(); 
     };
 
-	Component.prototype._getMDL = function () {
+	/*Component.prototype._getMDL = function () {
         var res = '';
         res += 'Block {\n    BlockType    ' + this.btype + '\n    Name    ';
         res += '"' + this.name + this.id + '"\n    Ports    [';
@@ -327,7 +301,19 @@ $(document).ready(function () {
         }
         res += '}\n';
         return res;
-    }
+    }*/
+	Component.prototype._getMDL = function () {
+	    var res = '';
+		res += 'add_block(\'built-in/' + this.btype + '\',\'simulinksample/' + this.btype + this.id +'\');\n' ;
+		res += 'set_param(\'simulinksample/' + this.btype + this.id + '\',\'position\',\'[' + this.position.join(' ') + ']\',';
+		for (var i in this.attr) {
+		    res += '\'' + i + '\',\'' + this.attr[i] + '\',';//这里有点问题。。。。如果回括号前有逗号，会出错…………这…………↓下面那句显然是失败了OTZ
+		}
+		//res = res - ',';
+		res += ');\n';
+		return res;
+		
+	}
 
     function Line(width, startx, starty) {
         Element.call(this, 'line');
@@ -402,7 +388,7 @@ $(document).ready(function () {
         res += '"' + src.name + src.id + '"\n    SrcPort    ';
         res += this.srcPort + '\n    DstBlock    ';
         res += '\"' + dst.name + dst.id + '"\n    DstPort    ';
-        res += this.dstPort + '\n}\n';
+        res += this.dstPort + '\n}';
         return res;
     }
 
@@ -615,7 +601,7 @@ $(document).ready(function () {
         return [-1, false];
     }
 	
-	$('#save').bind('click', function() {
+	$('#saveall').bind('click', function() {
         var str = $('textarea').val();
         var tmp = str;
         for(var x in items) {
@@ -628,17 +614,16 @@ $(document).ready(function () {
                 tmp += items[x]._getMDL();
             }
         }
-        tmp += '}\n}';
+		tmp += 'save_system;\nsim(\'simulinksample\');';
 
         $.post('fileio.php',
         {
-          'filename':'simulinksample.mdl',
+          'filename':'untitle.m',
           'data':tmp
         },
         function(data,status){
         });
     });
-
 
     function getItem(itemID) {
         for (var x in items) {
