@@ -83,8 +83,8 @@ $(document).ready(function () {
                 //this.ports = [1, 1];
                 this.position = [this.x, this.y, this.x + 30, this.y + 30]
                 this.attr.Amplitude = 1;//
-                this.attr.frequency = 1;//
-                this.attr.bias = 0;//
+                this.attr.Frequency = 1;//
+                this.attr.Bias = 0;//
                 break;
             }
             case 'add': {
@@ -256,17 +256,17 @@ $(document).ready(function () {
 
         switch(this.type) {     //$(xxx).val(a)
             case 'sine': {
-                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.amplitude);
-                $(popUpWindow.find('input[type=text]')[1]).val(this.attr.frequency);
-                $(popUpWindow.find('input[type=text]')[2]).val(this.attr.phase);
+                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.Amplitude);
+                $(popUpWindow.find('input[type=text]')[1]).val(this.attr.Frequency);
+                $(popUpWindow.find('input[type=text]')[2]).val(this.attr.Phase);
                 break;
             }
             case 'constant': {
-                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.constant);
+                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.Value);
                 break;
             }
             case 'gain': {
-                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.gain);
+                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.Gain);
                 break;
             }
             case 'gaussian': {
@@ -311,7 +311,6 @@ $(document).ready(function () {
             attrCnt.push('\'' + i + '\',\'' + this.attr[i] + '\'');
         }
         res += attrCnt.join(',\n');
-        //res = res - ',';
         res += ');\n';
         return res;
         
