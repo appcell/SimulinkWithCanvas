@@ -74,7 +74,7 @@ $(document).ready(function () {
 		this.attr1 = new Object();
         switch(this.type) {
             case 'sine': {
-			    this.btype = 'Sin';
+			    this.btype = 'sin';
 			    //this.name = 'Sine Wave\\nFunction';
 				this.inPorts = [1];
                 this.inPortPos = [0, 37];
@@ -88,7 +88,7 @@ $(document).ready(function () {
                 break;
             }
 			case 'add': {
-			    this.btype = 'Sum';
+			    this.btype = 'sum';
 			    //this.name = 'Add';
 				this.inPorts = [1,2];
                 this.inPortPos = [0, 20, 0, 55];
@@ -99,7 +99,7 @@ $(document).ready(function () {
 				break;
 			}
 			case 'product': {
-			    this.btype = 'Product';
+			    this.btype = 'product';
 			    //this.name = 'Product';
 				this.inPorts = [1,2];
                 this.inPortPos = [0, 19, 0, 56];
@@ -110,7 +110,7 @@ $(document).ready(function () {
 				break;
 			}
             case 'constant': {
-			    this.btype = 'Constant';
+			    this.btype = 'constant';
 			    //this.name = 'Constant';
 				this.inPorts = [];
                 this.inPortPos = [];
@@ -122,7 +122,7 @@ $(document).ready(function () {
 				break;
 			}
 			case 'gain': {
-			    this.btype = 'Gain';
+			    this.btype = 'gain';
 			    //this.name = 'Gain';
 				this.inPorts = [1];
                 this.inPortPos = [0, 37];
@@ -134,7 +134,7 @@ $(document).ready(function () {
 				break;
 			}
 			case 'tofile': {
-			    this.btype = 'ToFile';
+			    this.btype = 'tofile';
 			    //this.name = 'To File';
                 this.inPorts = [1];
                 this.inPortPos = [0, 37];
@@ -146,7 +146,7 @@ $(document).ready(function () {
 				break;
 			}
 			case 'gaussian': {
-			    //【这个显然和下面analog的相同了……【this.btype = 'Reference';
+			    this.btype = 'Noise Generators/reference';//……不管用，暂时不理它||
 			    //this.BlockType = 'Reference';
 				//this.name = 'Gaussian Noise\\nGenerator';
                 this.inPorts = [];
@@ -161,7 +161,7 @@ $(document).ready(function () {
 				break;
 			}
 			case 'analog': {
-			    //this.btype = 'Reference';
+			    this.btype = 'Filter Design/reference';
 			    //this.name = 'Analog\\nFilter Design';
 				this.outPorts = [1];
                 this.outPortPos = [75, 37];
@@ -380,7 +380,7 @@ $(document).ready(function () {
         }
     }
 	
-	Line.prototype._getMDL = function() {
+	/*Line.prototype._getMDL = function() {
         var src = getItem(this.srcBlock);
         var dst = getItem(this.dstBlock);
         var res = '';
@@ -389,6 +389,13 @@ $(document).ready(function () {
         res += this.srcPort + '\n    DstBlock    ';
         res += '\"' + dst.name + dst.id + '"\n    DstPort    ';
         res += this.dstPort + '\n}';
+        return res;
+    }*/
+	Line.prototype._getMDL = function() {
+        var src = getItem(this.srcBlock);
+        var dst = getItem(this.dstBlock);
+        var res = '';
+		res += 'add_line(\'simulinksample\',\'' + src.btype + src.id + '/' + this.srcPort + '\',\'' + dst.btype + dst.id + '/' + this.dstPort + '\');\n';
         return res;
     }
 
@@ -614,7 +621,8 @@ $(document).ready(function () {
                 tmp += items[x]._getMDL();
             }
         }
-		tmp += 'save_system;\nsim(\'simulinksample\');';
+		tmp += 'save_system;';
+		//tmp += 'save_system;\nsim(\'simulinksample\');';
 
         $.post('fileio.php',
         {
