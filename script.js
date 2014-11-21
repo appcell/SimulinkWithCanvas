@@ -136,7 +136,7 @@
                 this.outPorts = [];
                 this.outPortPos = [];
 				this.position = [this.x, this.y, this.x + 30, this.y + 30]
-				this.attr1.filename = '"simulinksample.mat"';
+				this.attr.filename = 'simulinksample.mat';
 				break;
 			}
 			case 'gaussian': {
@@ -279,12 +279,14 @@
     Component.prototype._getMDL = function () {
         var res = '';
         res += 'add_block(\'built-in/' + this.btype + '\',\'simulinksample/' + this.btype + this.id +'\');\n' ;
-        res += 'set_param(\'simulinksample/' + this.btype + this.id + '\',\'position\',\'[' + this.position.join(' ') + ']\',';
+        res += 'set_param(';
         var attrCnt = []
+		attrCnt.push('\'simulinksample/' + this.btype + this.id + '\'');
+		attrCnt.push('\'position\',[' + this.position.join(' ') + ']');
         for (var i in this.attr) {
             attrCnt.push('\'' + i + '\',\'' + this.attr[i] + '\'');
         }
-        res += attrCnt.join(',\n');
+        res += attrCnt.join(',');
         res += ');\n';
         return res;
         
@@ -370,7 +372,7 @@
         var src = getItem(this.srcBlock);
         var dst = getItem(this.dstBlock);
         var res = '';
-		res += 'add_line(\'simulinksample\',\'' + src.btype + src.id + '/' + this.srcPort + '\',\'' + dst.btype + dst.id + '/' + this.dstPort + '\');\n';
+		res += 'add_line(\'simulinksample\',\'' + src.btype + src.id + '/' + this.srcPort + '\',\'' + dst.btype + dst.id + '/' + this.dstPort + '\',\'autorouting\',\'on\');\n';
         return res;
     }
 
