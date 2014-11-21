@@ -81,15 +81,9 @@
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
                 this.position = [this.x, this.y, this.x + 30, this.y + 30]
-<<<<<<< HEAD
-                this.attr.Amplitude = 1;//
-                this.attr.Frequency = 1;//
-                this.attr.Bias = 0;//
-=======
                 this.attr.amplitude = 1;//
                 this.attr.frequency = 1;//
                 this.attr.bias = 0;//
->>>>>>> 83869c3321e43180e8b96ca3d6090aa306c9b598
                 break;
             }
 			case 'add': {
@@ -220,21 +214,21 @@
 
     Component.prototype._setAttr = function(arr) {
         switch(this.type) {
-            case sine: {
+            case 'sine': {
                 this.attr.amplitude = arr[0];
                 this.attr.frequency = arr[1];
                 this.attr.bias = arr[2];
                 break;
             }
-            case constant: {this.attr.value = arr[0];break;}
-            case gain: {this.attr.gain = arr[0];break;}
-            case gaussian: {
+            case 'constant': {this.attr.value = arr[0];break;}
+            case 'gain': {this.attr.gain = arr[0];break;}
+            case 'gaussian': {
                 this.attr.m = arr[0];
                 this.attr.d = arr[1];
                 this.attr.s = arr[2];
                 break;
             }
-            case analog: {
+            case 'analog': {
                 this.attr.N = arr[0];
                 this.attr.Wlo = arr[1];
                 break;
@@ -253,15 +247,6 @@
 
         switch(this.type) {     //$(xxx).val(a)
             case 'sine': {
-<<<<<<< HEAD
-                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.Amplitude);
-                $(popUpWindow.find('input[type=text]')[1]).val(this.attr.Frequency);
-                $(popUpWindow.find('input[type=text]')[2]).val(this.attr.Phase);
-                break;
-            }
-            case 'constant': {
-                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.Value);
-=======
                 $(popUpWindow.find('input[type=text]')[0]).val(this.attr.amplitude);
                 $(popUpWindow.find('input[type=text]')[1]).val(this.attr.frequency);
                 $(popUpWindow.find('input[type=text]')[2]).val(this.attr.bias);
@@ -269,7 +254,6 @@
             }
             case 'constant': {
                 $(popUpWindow.find('input[type=text]')[0]).val(this.attr.value);
->>>>>>> 83869c3321e43180e8b96ca3d6090aa306c9b598
                 break;
             }
             case 'gain': {
