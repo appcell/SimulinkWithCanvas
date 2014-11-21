@@ -1,7 +1,7 @@
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     // ======================================================================
-    //     全局变量和全局事件 
+    //
     // ======================================================================
 
     var form = '';
@@ -52,7 +52,7 @@ $(document).ready(function () {
     $('#TOOLID2').bind('click', function () {form = (form == 'era'? '' : 'era');});
 
     // ======================================================================
-    //     对象构造器
+    //
     // ======================================================================
     function Element(type) { 
         this.type = type;
@@ -74,9 +74,9 @@ $(document).ready(function () {
         this.attr1 = new Object();
         switch(this.type) {
             case 'sine': {
-                this.btype = 'Sin';
-                //this.name = 'Sine Wave\\nFunction';
-                this.inPorts = [1];
+			    this.btype = 'sin';
+			    //this.name = 'Sine Wave\\nFunction';
+				this.inPorts = [1];
                 this.inPortPos = [0, 37];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
@@ -87,21 +87,21 @@ $(document).ready(function () {
                 this.attr.Bias = 0;//
                 break;
             }
-            case 'add': {
-                this.btype = 'Sum';
-                //this.name = 'Add';
-                this.inPorts = [1,2];
+			case 'add': {
+			    this.btype = 'sum';
+			    //this.name = 'Add';
+				this.inPorts = [1,2];
                 this.inPortPos = [0, 20, 0, 55];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-                //this.ports = [2, 1];
-                this.position = [this.x, this.y, this.x + 30, this.y + 30]
-                break;
-            }
-            case 'product': {
-                this.btype = 'Product';
-                //this.name = 'Product';
-                this.inPorts = [1,2];
+			    //this.ports = [2, 1];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
+				break;
+			}
+			case 'product': {
+			    this.btype = 'product';
+			    //this.name = 'Product';
+				this.inPorts = [1,2];
                 this.inPortPos = [0, 19, 0, 56];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
@@ -110,66 +110,65 @@ $(document).ready(function () {
                 break;
             }
             case 'constant': {
-                this.btype = 'Constant';
-                //this.name = 'Constant';
-                this.inPorts = [];
+			    this.btype = 'constant';
+			    //this.name = 'Constant';
+				this.inPorts = [];
                 this.inPortPos = [];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-                //this.ports = [0,1];
-                this.position = [this.x, this.y, this.x + 30, this.y + 30]
-                this.attr.Value = 1;//
-                break;
-            }
-            case 'gain': {
-                this.btype = 'Gain';
-                //this.name = 'Gain';
-                this.inPorts = [1];
+			    //this.ports = [0,1];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
+				this.attr.Value = 1;//
+				break;
+			}
+			case 'gain': {
+			    this.btype = 'gain';
+			    //this.name = 'Gain';
+				this.inPorts = [1];
                 this.inPortPos = [0, 37];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-                //this.ports = [1, 1];
-                this.position = [this.x, this.y, this.x + 30, this.y + 30]
-                this.attr.Gain = 1;//
-                break;
-            }
-            case 'tofile': {
-                this.btype = 'ToFile';
-                //this.name = 'To File';
+			    //this.ports = [1, 1];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
+			    this.attr.Gain = 1;//
+				break;
+			}
+			case 'tofile': {
+			    this.btype = 'tofile';
+			    //this.name = 'To File';
                 this.inPorts = [1];
                 this.inPortPos = [0, 37];
                 this.outPorts = [];
                 this.outPortPos = [];
-                //this.ports = [1, 0];
-                this.position = [this.x, this.y, this.x + 30, this.y + 30]
-                this.attr1.Filename = '"simulinksample.mat"';
-                break;
-            }
-            case 'gaussian': {
-                //【这个显然和下面analog的相同了……【this.btype = 'Reference';
-                //this.BlockType = 'Reference';
-                //this.name = 'Gaussian Noise\\nGenerator';
+			    //this.ports = [1, 0];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
+				this.attr1.Filename = '"simulinksample.mat"';
+				break;
+			}
+			case 'gaussian': {
+			    this.btype = 'Noise Generators/reference';//……不管用，暂时不理它||
+			    //this.BlockType = 'Reference';
                 this.inPorts = [];
                 this.inPortPos = [];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-                //this.ports = [0, 1];
-                this.position = [this.x, this.y, this.x + 30, this.y + 30]
-                this.attr.m = 0;//
-                this.attr.d = 1;//
-                this.attr.s = 41;//
-                break;
-            }
-            case 'analog': {
-                //this.btype = 'Reference';
-                //this.name = 'Analog\\nFilter Design';
-                this.outPorts = [1];
+			    //this.ports = [0, 1];
+				this.position = [this.x, this.y, this.x + 30, this.y + 30]
+				this.attr.m = 0;//
+				this.attr.d = 1;//
+				this.attr.s = 41;//
+				break;
+			}
+			case 'analog': {
+			    this.btype = 'Filter Design/reference';
+			    //this.name = 'Analog\\nFilter Design';
+				this.outPorts = [1];
                 this.outPortPos = [75, 37];
                 this.inPorts = [1];
                 this.inPortPos = [0, 37];
                 //this.ports = [1, 1];
                 this.position = [this.x, this.y, this.x + 30, this.y + 30]
-                this.attr.filttype = '"Lowpass"';//算了就让它维持低通吧。。
+                this.attr.filttype = '"Lowpass"';//
                 this.attr.N = 8;//
                 this.attr.Wlo = 30;//
                 //this.attr1.Whi = '"80"';
@@ -248,8 +247,8 @@ $(document).ready(function () {
 
     Component.prototype._popUp = function() {
         beingEdit = this;
-        var popUpWindow = $('#'+this.type);     // 获取到编辑窗这个dom元素
-        popUpWindow.css({     //调整编辑窗位置
+        var popUpWindow = $('#'+this.type);     //
+        popUpWindow.css({     //
             'left': this.x + this.width / 2 + canvasLeft,
             'top': this.y + this.height / 2 + canvasTop
         });
@@ -286,22 +285,6 @@ $(document).ready(function () {
         popUpWindow.show(); 
     };
 
-    /*Component.prototype._getMDL = function () {
-        var res = '';
-        res += 'Block {\n    BlockType    ' + this.btype + '\n    Name    ';
-        res += '"' + this.name + this.id + '"\n    Ports    [';
-        // res += this.ports.join(',') + ']\n    Position    [';
-        res += this.ports.join(',') + ']\n    Position    [';
-        res += this.position.join(',') + ']\n';
-        for (var i in this.attr) {
-            res += '    ' + i + '    "' + this.attr[i] + '"\n'
-        }
-        for (var i in this.attr1) {
-            res += '    ' + i + '    ' + this.attr1[i] + '\n'
-        }
-        res += '}\n';
-        return res;
-    }*/
     Component.prototype._getMDL = function () {
         var res = '';
         res += 'add_block(\'built-in/' + this.btype + '\',\'simulinksample/' + this.btype + this.id +'\');\n' ;
@@ -380,8 +363,8 @@ $(document).ready(function () {
             this._startLine(item.x + item.inPortPos[(portNum-1)*2] - item.width / 2, item.y + item.inPortPos[(portNum-1)*2 + 1] - item.height / 2);
         }
     }
-    
-    Line.prototype._getMDL = function() {
+	
+	/*Line.prototype._getMDL = function() {
         var src = getItem(this.srcBlock);
         var dst = getItem(this.dstBlock);
         var res = '';
@@ -390,6 +373,13 @@ $(document).ready(function () {
         res += this.srcPort + '\n    DstBlock    ';
         res += '\"' + dst.name + dst.id + '"\n    DstPort    ';
         res += this.dstPort + '\n}';
+        return res;
+    }*/
+	Line.prototype._getMDL = function() {
+        var src = getItem(this.srcBlock);
+        var dst = getItem(this.dstBlock);
+        var res = '';
+		res += 'add_line(\'simulinksample\',\'' + src.btype + src.id + '/' + this.srcPort + '\',\'' + dst.btype + dst.id + '/' + this.dstPort + '\');\n';
         return res;
     }
 
@@ -414,7 +404,7 @@ $(document).ready(function () {
     }
 
     // ======================================================================
-    //     事件
+    //
     // ======================================================================
     $('#ACanvas').bind('mousedown', function (e) {
         var eventX = e.pageX - canvasLeft;
@@ -494,7 +484,7 @@ $(document).ready(function () {
             case 'era': {
                 for (var x in items) {
                     if (isIntersected(eventX, eventY, items[x])) {
-                        items.splice(x, 1);     //从items数组里删除编号为x的元素
+                        items.splice(x, 1);     //
                     }
                 }
                 break;
@@ -578,7 +568,7 @@ $(document).ready(function () {
     });
 
     // ======================================================================
-    //     其他
+    //
     // ======================================================================
     function getPort(item, eventX, eventY) {
         for (var x in item.inPorts) {
@@ -615,7 +605,8 @@ $(document).ready(function () {
                 tmp += items[x]._getMDL();
             }
         }
-        tmp += 'save_system;\nsim(\'simulinksample\');';
+		tmp += 'save_system;';
+		//tmp += 'save_system;\nsim(\'simulinksample\');';
 
         $.post('fileio.php',
         {
@@ -637,11 +628,11 @@ $(document).ready(function () {
     $('.submit').bind('click', function () {
         var popUpWindow = $(this).parent().parent();
         var array = [];
-        $(this).prev().children('input[type=text]').each(function() {     //each()，取到所有文本框里的当前值，然后将其放到array中
+        $(this).prev().children('input[type=text]').each(function() {     //
             array.push($(this).val());
         });
 
-        beingEdit._setAttr(array);     //把array作为参数，使用component的_setAttr()方法将其设置为attr值
+        beingEdit._setAttr(array);     //
         popUpWindow.hide();
     });
 
