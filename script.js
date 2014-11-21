@@ -1,14 +1,14 @@
 $(document).ready(function () {
 
     // ======================================================================
-    //     »´æ÷±‰¡ø∫Õ»´æ÷ ¬º˛ 
+    //     ÂÖ®Â±ÄÂèòÈáèÂíåÂÖ®Â±Ä‰∫ã‰ª∂ 
     // ======================================================================
 
     var form = '';
     var inmotion = false;
     var id = 0;
     var beingEdit = {};
-	var beingDragged = null;
+    var beingDragged = null;
     var mouseStart = 
     {
         'x': 0,
@@ -28,23 +28,23 @@ $(document).ready(function () {
     var ctx = canvas.getContext('2d');
     var img1=document.getElementById("COMID1");
     var img2=document.getElementById("COMID2");
-	var img3=document.getElementById("COMID3");
-	var img4=document.getElementById("COMID4");
-	var img5=document.getElementById("COMID5");
-	var img6=document.getElementById("COMID6");
-	var img7=document.getElementById("COMID7");
-	var img8=document.getElementById("COMID8");
+    var img3=document.getElementById("COMID3");
+    var img4=document.getElementById("COMID4");
+    var img5=document.getElementById("COMID5");
+    var img6=document.getElementById("COMID6");
+    var img7=document.getElementById("COMID7");
+    var img8=document.getElementById("COMID8");
 
     $('#COMID1').bind('click', function () {
         form = (form == 'sine'? '' : 'sine');
     });
     $('#COMID2').bind('click', function () {form = (form == 'add'? '' : 'add');});
-	$('#COMID3').bind('click', function () {form = (form == 'product'? '' : 'product');});
-	$('#COMID4').bind('click', function () {form = (form == 'constant'? '' : 'constant');});
-	$('#COMID5').bind('click', function () {form = (form == 'gain'? '' : 'gain');});
-	$('#COMID6').bind('click', function () {form = (form == 'tofile'? '' : 'tofile');});
-	$('#COMID7').bind('click', function () {form = (form == 'gaussian'? '' : 'gaussian');});
-	$('#COMID8').bind('click', function () {form = (form == 'analog'? '' : 'analog');});
+    $('#COMID3').bind('click', function () {form = (form == 'product'? '' : 'product');});
+    $('#COMID4').bind('click', function () {form = (form == 'constant'? '' : 'constant');});
+    $('#COMID5').bind('click', function () {form = (form == 'gain'? '' : 'gain');});
+    $('#COMID6').bind('click', function () {form = (form == 'tofile'? '' : 'tofile');});
+    $('#COMID7').bind('click', function () {form = (form == 'gaussian'? '' : 'gaussian');});
+    $('#COMID8').bind('click', function () {form = (form == 'analog'? '' : 'analog');});
 /////
     $('#TOOLID1').bind('click', function () {
         form = (form == 'line'? '' : 'line');
@@ -52,7 +52,7 @@ $(document).ready(function () {
     $('#TOOLID2').bind('click', function () {form = (form == 'era'? '' : 'era');});
 
     // ======================================================================
-    //     ∂‘œÛππ‘Ï∆˜
+    //     ÂØπË±°ÊûÑÈÄ†Âô®
     // ======================================================================
     function Element(type) { 
         this.type = type;
@@ -71,112 +71,112 @@ $(document).ready(function () {
         this.height = height;
 
         this.attr = new Object();
-		this.attr1 = new Object();
+        this.attr1 = new Object();
         switch(this.type) {
             case 'sine': {
-			    this.btype = 'Sin';
-			    //this.name = 'Sine Wave\\nFunction';
-				this.inPorts = [1];
+                this.btype = 'Sin';
+                //this.name = 'Sine Wave\\nFunction';
+                this.inPorts = [1];
                 this.inPortPos = [0, 37];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    //this.ports = [1, 1];
-				this.position = [this.x, this.y, this.x + 30, this.y + 30]
+                //this.ports = [1, 1];
+                this.position = [this.x, this.y, this.x + 30, this.y + 30]
                 this.attr.Amplitude = 1;//
                 this.attr.frequency = 1;//
                 this.attr.bias = 0;//
                 break;
             }
-			case 'add': {
-			    this.btype = 'Sum';
-			    //this.name = 'Add';
-				this.inPorts = [1,2];
+            case 'add': {
+                this.btype = 'Sum';
+                //this.name = 'Add';
+                this.inPorts = [1,2];
                 this.inPortPos = [0, 20, 0, 55];
-				this.outPorts = [1];
+                this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    //this.ports = [2, 1];
-				this.position = [this.x, this.y, this.x + 30, this.y + 30]
-				break;
-			}
-			case 'product': {
-			    this.btype = 'Product';
-			    //this.name = 'Product';
-				this.inPorts = [1,2];
+                //this.ports = [2, 1];
+                this.position = [this.x, this.y, this.x + 30, this.y + 30]
+                break;
+            }
+            case 'product': {
+                this.btype = 'Product';
+                //this.name = 'Product';
+                this.inPorts = [1,2];
                 this.inPortPos = [0, 19, 0, 56];
-				this.outPorts = [1];
+                this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    //this.ports = [2, 1];
-				this.position = [this.x, this.y, this.x + 30, this.y + 30]
-				break;
-			}
+                //this.ports = [2, 1];
+                this.position = [this.x, this.y, this.x + 30, this.y + 30]
+                break;
+            }
             case 'constant': {
-			    this.btype = 'Constant';
-			    //this.name = 'Constant';
-				this.inPorts = [];
-                this.inPortPos = [];
-				this.outPorts = [1];
-                this.outPortPos = [75, 37];
-			    //this.ports = [0,1];
-				this.position = [this.x, this.y, this.x + 30, this.y + 30]
-				this.attr.Value = 1;//
-				break;
-			}
-			case 'gain': {
-			    this.btype = 'Gain';
-			    //this.name = 'Gain';
-				this.inPorts = [1];
-                this.inPortPos = [0, 37];
-				this.outPorts = [1];
-                this.outPortPos = [75, 37];
-			    //this.ports = [1, 1];
-				this.position = [this.x, this.y, this.x + 30, this.y + 30]
-			    this.attr.Gain = 1;//
-				break;
-			}
-			case 'tofile': {
-			    this.btype = 'ToFile';
-			    //this.name = 'To File';
-                this.inPorts = [1];
-                this.inPortPos = [0, 37];
-				this.outPorts = [];
-                this.outPortPos = [];
-			    //this.ports = [1, 0];
-				this.position = [this.x, this.y, this.x + 30, this.y + 30]
-				this.attr1.Filename = '"simulinksample.mat"';
-				break;
-			}
-			case 'gaussian': {
-			    //°æ’‚∏ˆœ‘»ª∫Õœ¬√Êanalogµƒœ‡Õ¨¡À°≠°≠°æthis.btype = 'Reference';
-			    //this.BlockType = 'Reference';
-				//this.name = 'Gaussian Noise\\nGenerator';
+                this.btype = 'Constant';
+                //this.name = 'Constant';
                 this.inPorts = [];
                 this.inPortPos = [];
-				this.outPorts = [1];
+                this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    //this.ports = [0, 1];
-				this.position = [this.x, this.y, this.x + 30, this.y + 30]
-				this.attr.m = 0;//
-				this.attr.d = 1;//
-				this.attr.s = 41;//
-				break;
-			}
-			case 'analog': {
-			    //this.btype = 'Reference';
-			    //this.name = 'Analog\\nFilter Design';
-				this.outPorts = [1];
+                //this.ports = [0,1];
+                this.position = [this.x, this.y, this.x + 30, this.y + 30]
+                this.attr.Value = 1;//
+                break;
+            }
+            case 'gain': {
+                this.btype = 'Gain';
+                //this.name = 'Gain';
+                this.inPorts = [1];
+                this.inPortPos = [0, 37];
+                this.outPorts = [1];
+                this.outPortPos = [75, 37];
+                //this.ports = [1, 1];
+                this.position = [this.x, this.y, this.x + 30, this.y + 30]
+                this.attr.Gain = 1;//
+                break;
+            }
+            case 'tofile': {
+                this.btype = 'ToFile';
+                //this.name = 'To File';
+                this.inPorts = [1];
+                this.inPortPos = [0, 37];
+                this.outPorts = [];
+                this.outPortPos = [];
+                //this.ports = [1, 0];
+                this.position = [this.x, this.y, this.x + 30, this.y + 30]
+                this.attr1.Filename = '"simulinksample.mat"';
+                break;
+            }
+            case 'gaussian': {
+                //„ÄêËøô‰∏™ÊòæÁÑ∂Âíå‰∏ãÈù¢analogÁöÑÁõ∏Âêå‰∫Ü‚Ä¶‚Ä¶„Äêthis.btype = 'Reference';
+                //this.BlockType = 'Reference';
+                //this.name = 'Gaussian Noise\\nGenerator';
+                this.inPorts = [];
+                this.inPortPos = [];
+                this.outPorts = [1];
+                this.outPortPos = [75, 37];
+                //this.ports = [0, 1];
+                this.position = [this.x, this.y, this.x + 30, this.y + 30]
+                this.attr.m = 0;//
+                this.attr.d = 1;//
+                this.attr.s = 41;//
+                break;
+            }
+            case 'analog': {
+                //this.btype = 'Reference';
+                //this.name = 'Analog\\nFilter Design';
+                this.outPorts = [1];
                 this.outPortPos = [75, 37];
                 this.inPorts = [1];
                 this.inPortPos = [0, 37];
-			    //this.ports = [1, 1];
-				this.position = [this.x, this.y, this.x + 30, this.y + 30]
-				this.attr.filttype = '"Lowpass"';//À„¡ÀæÕ»√À¸Œ¨≥÷µÕÕ®∞…°£°£
-				this.attr.N = 8;//
-				this.attr.Wlo = 30;//
-				//this.attr1.Whi = '"80"';
-				//this.attr1.Rp = '"2"';
-				//this.attr1.Rs = '"40"';
-				break;
-			}
+                //this.ports = [1, 1];
+                this.position = [this.x, this.y, this.x + 30, this.y + 30]
+                this.attr.filttype = '"Lowpass"';//ÁÆó‰∫ÜÂ∞±ËÆ©ÂÆÉÁª¥ÊåÅ‰ΩéÈÄöÂêß„ÄÇ„ÄÇ
+                this.attr.N = 8;//
+                this.attr.Wlo = 30;//
+                //this.attr1.Whi = '"80"';
+                //this.attr1.Rp = '"2"';
+                //this.attr1.Rs = '"40"';
+                break;
+            }
             default: break;
         }
     };
@@ -193,27 +193,27 @@ $(document).ready(function () {
                 ctx.drawImage(img2,this.x - this.width / 2, this.y - this.height / 2);
                 break;
             }
-			case 'product': {
+            case 'product': {
                 ctx.drawImage(img3,this.x - this.width / 2, this.y - this.height / 2);
                 break;
             }
-			case 'constant': {
+            case 'constant': {
                 ctx.drawImage(img4,this.x - this.width / 2, this.y - this.height / 2);
                 break;
             }
-			case 'gain': {
+            case 'gain': {
                 ctx.drawImage(img5,this.x - this.width / 2, this.y - this.height / 2);
                 break;
             }
-			case 'tofile': {
+            case 'tofile': {
                 ctx.drawImage(img6,this.x - this.width / 2, this.y - this.height / 2);
                 break;
             }
-			case 'gaussian': {
+            case 'gaussian': {
                 ctx.drawImage(img7,this.x - this.width / 2, this.y - this.height / 2);
                 break;
             }
-			case 'analog': {
+            case 'analog': {
                 ctx.drawImage(img8,this.x - this.width / 2, this.y - this.height / 2);
                 break;
             }
@@ -230,26 +230,26 @@ $(document).ready(function () {
                 break;
             }
             case constant: {this.attr.Value = arr[0];break;}
-			case gain: {this.attr.gain = arr[0];break;}
-			case gaussian: {
-			    this.attr.m = arr[0];
-		    	this.attr.d = arr[1];
-			    this.attr.s = arr[2];
-			    break;
-			}
-			case analog: {
-			    this.attr.N = arr[0];
-			    this.attr.Wlo = arr[1];
-			    break;
-			}
+            case gain: {this.attr.gain = arr[0];break;}
+            case gaussian: {
+                this.attr.m = arr[0];
+                this.attr.d = arr[1];
+                this.attr.s = arr[2];
+                break;
+            }
+            case analog: {
+                this.attr.N = arr[0];
+                this.attr.Wlo = arr[1];
+                break;
+            }
             default: break;
         }
     };
 
     Component.prototype._popUp = function() {
         beingEdit = this;
-        var popUpWindow = $('#'+this.type);     // ªÒ»°µΩ±‡º≠¥∞’‚∏ˆdom‘™Àÿ
-        popUpWindow.css({     //µ˜’˚±‡º≠¥∞Œª÷√
+        var popUpWindow = $('#'+this.type);     // Ëé∑ÂèñÂà∞ÁºñËæëÁ™óËøô‰∏™domÂÖÉÁ¥†
+        popUpWindow.css({     //Ë∞ÉÊï¥ÁºñËæëÁ™ó‰ΩçÁΩÆ
             'left': this.x + this.width / 2 + canvasLeft,
             'top': this.y + this.height / 2 + canvasTop
         });
@@ -265,17 +265,17 @@ $(document).ready(function () {
                 $(popUpWindow.find('input[type=text]')[0]).val(this.attr.constant);
                 break;
             }
-			case 'gain': {
+            case 'gain': {
                 $(popUpWindow.find('input[type=text]')[0]).val(this.attr.gain);
                 break;
             }
-			case 'gaussian': {
+            case 'gaussian': {
                 $(popUpWindow.find('input[type=text]')[0]).val(this.attr.mean);
                 $(popUpWindow.find('input[type=text]')[1]).val(this.attr.variance);
                 $(popUpWindow.find('input[type=text]')[2]).val(this.attr.initil);
                 break;
             }
-			case 'analog': {
+            case 'analog': {
                 $(popUpWindow.find('input[type=text]')[0]).val(this.attr.filter);
                 $(popUpWindow.find('input[type=text]')[1]).val(this.attr.edge);
                 break;
@@ -286,7 +286,7 @@ $(document).ready(function () {
         popUpWindow.show(); 
     };
 
-	/*Component.prototype._getMDL = function () {
+    /*Component.prototype._getMDL = function () {
         var res = '';
         res += 'Block {\n    BlockType    ' + this.btype + '\n    Name    ';
         res += '"' + this.name + this.id + '"\n    Ports    [';
@@ -296,24 +296,26 @@ $(document).ready(function () {
         for (var i in this.attr) {
             res += '    ' + i + '    "' + this.attr[i] + '"\n'
         }
-		for (var i in this.attr1) {
+        for (var i in this.attr1) {
             res += '    ' + i + '    ' + this.attr1[i] + '\n'
         }
         res += '}\n';
         return res;
     }*/
-	Component.prototype._getMDL = function () {
-	    var res = '';
-		res += 'add_block(\'built-in/' + this.btype + '\',\'simulinksample/' + this.btype + this.id +'\');\n' ;
-		res += 'set_param(\'simulinksample/' + this.btype + this.id + '\',\'position\',\'[' + this.position.join(' ') + ']\',';
-		for (var i in this.attr) {
-		    res += '\'' + i + '\',\'' + this.attr[i] + '\',';//’‚¿Ô”–µ„Œ Ã‚°£°£°£°£»Áπ˚ªÿ¿®∫≈«∞”–∂∫∫≈£¨ª·≥ˆ¥Ì°≠°≠°≠°≠’‚°≠°≠°≠°≠°˝œ¬√Êƒ«æ‰œ‘»ª « ß∞‹¡ÀOTZ
-		}
-		//res = res - ',';
-		res += ');\n';
-		return res;
-		
-	}
+    Component.prototype._getMDL = function () {
+        var res = '';
+        res += 'add_block(\'built-in/' + this.btype + '\',\'simulinksample/' + this.btype + this.id +'\');\n' ;
+        res += 'set_param(\'simulinksample/' + this.btype + this.id + '\',\'position\',\'[' + this.position.join(' ') + ']\',';
+        var attrCnt = []
+        for (var i in this.attr) {
+            attrCnt.push('\'' + i + '\',\'' + this.attr[i] + '\'');
+        }
+        res += attrCnt.join(',\n');
+        //res = res - ',';
+        res += ');\n';
+        return res;
+        
+    }
 
     function Line(width, startx, starty) {
         Element.call(this, 'line');
@@ -334,11 +336,11 @@ $(document).ready(function () {
         this.end = {'x': endx, 'y': endy};
     }
 
-	Line.prototype._startLine = function(startx, starty) {
+    Line.prototype._startLine = function(startx, starty) {
         this.start = {'x': startx, 'y': starty};
     }
-	
-	Line.prototype._endPort = function(item, portNum, isOut) {
+    
+    Line.prototype._endPort = function(item, portNum, isOut) {
         if(isOut == true && this.srcIsOut == true || isOut == false && this.srcIsOut == false) {
             return false;
         } else if (this.srcIsOut != true) {
@@ -369,7 +371,7 @@ $(document).ready(function () {
         }
     }
 
-	Line.prototype._startPort = function(item, portNum, isOut) {
+    Line.prototype._startPort = function(item, portNum, isOut) {
         this.srcBlock = item.id;
         this.srcPort = portNum;
         this.srcIsOut = isOut;
@@ -379,8 +381,8 @@ $(document).ready(function () {
             this._startLine(item.x + item.inPortPos[(portNum-1)*2] - item.width / 2, item.y + item.inPortPos[(portNum-1)*2 + 1] - item.height / 2);
         }
     }
-	
-	Line.prototype._getMDL = function() {
+    
+    Line.prototype._getMDL = function() {
         var src = getItem(this.srcBlock);
         var dst = getItem(this.dstBlock);
         var res = '';
@@ -406,14 +408,14 @@ $(document).ready(function () {
         ctx.lineTo(this.end.x,this.end.y);
         ctx.stroke(); 
     }
-	
-	Component.prototype._set = function(x, y) {
-		this.x = x;
+    
+    Component.prototype._set = function(x, y) {
+        this.x = x;
         this.y = y;
-	}
+    }
 
     // ======================================================================
-    //      ¬º˛
+    //     ‰∫ã‰ª∂
     // ======================================================================
     $('#ACanvas').bind('mousedown', function (e) {
         var eventX = e.pageX - canvasLeft;
@@ -422,57 +424,57 @@ $(document).ready(function () {
             case 'sine': {
                 var com = new Component(form, eventX, eventY, 75, 75); 
                 items.push(com);
-				form = '';
+                form = '';
                 break;
             }
                 
             case 'add': {
-				var com = new Component(form, eventX, eventY, 75, 75);
+                var com = new Component(form, eventX, eventY, 75, 75);
                 items.push(com); 
-				form = '';
+                form = '';
                 break;
             }
-			case 'product': {
-				var com = new Component(form, eventX, eventY, 75, 75);
+            case 'product': {
+                var com = new Component(form, eventX, eventY, 75, 75);
                 items.push(com); 
-				form = '';
+                form = '';
                 break;
             }
-			case 'constant': {
-				var com = new Component(form, eventX, eventY, 75, 75);
+            case 'constant': {
+                var com = new Component(form, eventX, eventY, 75, 75);
                 items.push(com); 
-				form = '';
+                form = '';
                 break;
             }
-			case 'gain': {
-				var com = new Component(form, eventX, eventY, 75, 75);
+            case 'gain': {
+                var com = new Component(form, eventX, eventY, 75, 75);
                 items.push(com); 
-				form = '';
+                form = '';
                 break;
             }
-			case 'tofile': {
-				var com = new Component(form, eventX, eventY, 75, 75);
+            case 'tofile': {
+                var com = new Component(form, eventX, eventY, 75, 75);
                 items.push(com); 
-				form = '';
+                form = '';
                 break;
             }
-			case 'gaussian': {
-				var com = new Component(form, eventX, eventY, 75, 75);
+            case 'gaussian': {
+                var com = new Component(form, eventX, eventY, 75, 75);
                 items.push(com); 
-				form = '';
+                form = '';
                 break;
             }
-			case 'analog': {
-				var com = new Component(form, eventX, eventY, 75, 75);
+            case 'analog': {
+                var com = new Component(form, eventX, eventY, 75, 75);
                 items.push(com); 
-				form = '';
+                form = '';
                 break;
             }
 ////////
             case 'line': {
                 lineData = new Line(1, eventX, eventY);
-				inmotion = true;
-				for(var cnt in items) {
+                inmotion = true;
+                for(var cnt in items) {
                     if(items[cnt] instanceof Component) {
                         var res = getPort(items[cnt], eventX, eventY);
                         if(res[0] != -1) {
@@ -484,16 +486,16 @@ $(document).ready(function () {
                         }
                     }
                 }
-				lineData._startLine(eventX, eventY);				
-				lineData._endLine(eventX, eventY);
-				items.push(lineData);
-				lineData._draw();
+                lineData._startLine(eventX, eventY);                
+                lineData._endLine(eventX, eventY);
+                items.push(lineData);
+                lineData._draw();
                 break;
             }
             case 'era': {
                 for (var x in items) {
                     if (isIntersected(eventX, eventY, items[x])) {
-                        items.splice(x, 1);     //¥”items ˝◊È¿Ô…æ≥˝±‡∫≈Œ™xµƒ‘™Àÿ
+                        items.splice(x, 1);     //‰ªéitemsÊï∞ÁªÑÈáåÂà†Èô§ÁºñÂè∑‰∏∫xÁöÑÂÖÉÁ¥†
                     }
                 }
                 break;
@@ -512,8 +514,8 @@ $(document).ready(function () {
     });
 
     $('#ACanvas').bind('mousemove', function (e) {
-	    var eventX = e.pageX - canvasLeft;
-		var eventY = e.pageY - canvasTop;
+        var eventX = e.pageX - canvasLeft;
+        var eventY = e.pageY - canvasTop;
         switch(form) {
             case 'line': {
                 if(inmotion){
@@ -534,12 +536,12 @@ $(document).ready(function () {
     });
 
     $('#ACanvas').bind('mouseup', function (e) {
-	    var eventX = e.pageX - canvasLeft;
+        var eventX = e.pageX - canvasLeft;
         var eventY = e.pageY - canvasTop;
         switch(form) {
             case 'line': {
                 inmotion = false;
-				for(var cnt in items) {
+                for(var cnt in items) {
                     if(items[cnt] instanceof Component) {
                         var res = getPort(items[cnt], eventX, eventY);
                         if(res[0] != -1) {
@@ -571,15 +573,15 @@ $(document).ready(function () {
                     }
                     beingDragged = null;
                 }
-			}
-			break;
+            }
+            break;
         }
     });
 
     // ======================================================================
-    //     ∆‰À˚
+    //     ÂÖ∂‰ªñ
     // ======================================================================
-	function getPort(item, eventX, eventY) {
+    function getPort(item, eventX, eventY) {
         for (var x in item.inPorts) {
             var px = item.inPortPos[x*2];
             var py = item.inPortPos[x*2 + 1];
@@ -600,8 +602,8 @@ $(document).ready(function () {
         }
         return [-1, false];
     }
-	
-	$('#saveall').bind('click', function() {
+    
+    $('#saveall').bind('click', function() {
         var str = $('textarea').val();
         var tmp = str;
         for(var x in items) {
@@ -614,7 +616,7 @@ $(document).ready(function () {
                 tmp += items[x]._getMDL();
             }
         }
-		tmp += 'save_system;\nsim(\'simulinksample\');';
+        tmp += 'save_system;\nsim(\'simulinksample\');';
 
         $.post('fileio.php',
         {
@@ -632,23 +634,23 @@ $(document).ready(function () {
         }
         return null;
     }
-	
+    
     $('.submit').bind('click', function () {
         var popUpWindow = $(this).parent().parent();
         var array = [];
-        $(this).prev().children('input[type=text]').each(function() {     //each()£¨»°µΩÀ˘”–Œƒ±æøÚ¿Ôµƒµ±«∞÷µ£¨»ª∫ÛΩ´∆‰∑≈µΩarray÷–
+        $(this).prev().children('input[type=text]').each(function() {     //each()ÔºåÂèñÂà∞ÊâÄÊúâÊñáÊú¨Ê°ÜÈáåÁöÑÂΩìÂâçÂÄºÔºåÁÑ∂ÂêéÂ∞ÜÂÖ∂ÊîæÂà∞array‰∏≠
             array.push($(this).val());
         });
 
-        beingEdit._setAttr(array);     //∞—array◊˜Œ™≤Œ ˝£¨ π”√componentµƒ_setAttr()∑Ω∑®Ω´∆‰…Ë÷√Œ™attr÷µ
+        beingEdit._setAttr(array);     //Êääarray‰Ωú‰∏∫ÂèÇÊï∞Ôºå‰ΩøÁî®componentÁöÑ_setAttr()ÊñπÊ≥ïÂ∞ÜÂÖ∂ËÆæÁΩÆ‰∏∫attrÂÄº
         popUpWindow.hide();
     });
 
     $('.menu').bind('click', function () {
         $(this).next().slideToggle(500);
     });
-	
-	$(".comattr").draggable();
+    
+    $(".comattr").draggable();
 
     function isIntersected(x, y, element) {
         var res = false;
@@ -658,10 +660,10 @@ $(document).ready(function () {
         }
         else {
              var a = Math.sqrt(Math.pow(element.start.x-x,2)+Math.pow(element.start.y-y,2));
-			 var b = Math.sqrt(Math.pow(element.end.x-x,2)+Math.pow(element.end.y-y,2));
-			 var c = Math.sqrt(Math.pow(element.end.x-element.start.x,2)+Math.pow(element.end.y-element.start.y,2));
-			 if (Math.abs(a+b-c<1))
-			     return true;
+             var b = Math.sqrt(Math.pow(element.end.x-x,2)+Math.pow(element.end.y-y,2));
+             var c = Math.sqrt(Math.pow(element.end.x-element.start.x,2)+Math.pow(element.end.y-element.start.y,2));
+             if (Math.abs(a+b-c<1))
+                 return true;
         }
         return res;
     }
