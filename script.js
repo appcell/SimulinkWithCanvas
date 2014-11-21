@@ -354,6 +354,33 @@
             this._startLine(item.x + item.inPortPos[(portNum-1)*2] - item.width / 2, item.y + item.inPortPos[(portNum-1)*2 + 1] - item.height / 2);
         }
     }
+
+    Line.prototype._reAssign = function() {
+
+        if(this.srcBlock != -1) {
+            var srcB = getItem(this.srcBlock);
+            var srcP = this.srcPort;
+            if(this.srcIsOut == true) {
+                this._startLine(srcB.x + srcB.outPortPos[(srcP-1)*2] - srcB.width / 2, srcB.y + srcB.outPortPos[(srcP-1)*2 + 1] - srcB.height / 2);
+            }
+            else {
+                this._startLine(srcB.x + srcB.inPortPos[(srcP-1)*2] - srcB.width / 2, srcB.y + srcB.inPortPos[(srcP-1)*2 + 1] - srcB.height / 2);
+            }
+        }
+
+
+        if(this.dstBlock != -1) {
+            var dstB = getItem(this.dstBlock);
+            var dstP = this.dstPort;
+            if(this.srcIsOut == true) {
+                this._endLine(dstB.x + dstB.inPortPos[(dstP-1)*2] - dstB.width / 2, dstB.y + dstB.inPortPos[(dstP-1)*2 + 1] - dstB.height / 2);
+            }
+            else {
+                this._endLine(dstB.x + dstB.outPortPos[(dstP-1)*2] - dstB.width / 2, dstB.y + dstB.outPortPos[(dstP-1)*2 + 1] - dstB.height / 2);
+            }            
+        }
+
+    }
 	
 	/*Line.prototype._getMDL = function() {
         var src = getItem(this.srcBlock);
@@ -469,6 +496,7 @@
                 lineData._startLine(eventX, eventY);                
                 lineData._endLine(eventX, eventY);
                 items.push(lineData);
+
                 lineData._draw();
                 break;
             }
@@ -508,6 +536,14 @@
                 if(beingDragged != null) {
                     var x = eventX - mouseStart.x + mouseStart.originalCo.x;
                     var y = eventY - mouseStart.y + mouseStart.originalCo.y;
+                    for (var line in items) {
+                        if(items[line].type == 'line') {
+                                if(items[line].srcBlock == beingDragged.id || items[line].dstBlock == beingDragged.id) {
+                                    items[line]._reAssign();
+
+                                }
+                        }
+                    }
                     beingDragged._set(x, y);
                 }
                 drawall();
