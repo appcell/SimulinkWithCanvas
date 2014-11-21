@@ -80,9 +80,8 @@
                 this.inPortPos = [0, 37];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-                //this.ports = [1, 1];
                 this.position = [this.x, this.y, this.x + 30, this.y + 30]
-                this.attr.Amplitude = 1;//
+                this.attr.amplitude = 1;//
                 this.attr.frequency = 1;//
                 this.attr.bias = 0;//
                 break;
@@ -94,7 +93,6 @@
                 this.inPortPos = [0, 20, 0, 55];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    //this.ports = [2, 1];
 				this.position = [this.x, this.y, this.x + 30, this.y + 30]
 				break;
 			}
@@ -105,7 +103,6 @@
                 this.inPortPos = [0, 19, 0, 56];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-                //this.ports = [2, 1];
                 this.position = [this.x, this.y, this.x + 30, this.y + 30]
                 break;
             }
@@ -116,9 +113,8 @@
                 this.inPortPos = [];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    //this.ports = [0,1];
 				this.position = [this.x, this.y, this.x + 30, this.y + 30]
-				this.attr.Value = 1;//
+				this.attr.value = 1;//
 				break;
 			}
 			case 'gain': {
@@ -128,9 +124,8 @@
                 this.inPortPos = [0, 37];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    //this.ports = [1, 1];
 				this.position = [this.x, this.y, this.x + 30, this.y + 30]
-			    this.attr.Gain = 1;//
+			    this.attr.gain = 1;//
 				break;
 			}
 			case 'tofile': {
@@ -140,9 +135,8 @@
                 this.inPortPos = [0, 37];
                 this.outPorts = [];
                 this.outPortPos = [];
-			    //this.ports = [1, 0];
 				this.position = [this.x, this.y, this.x + 30, this.y + 30]
-				this.attr1.Filename = '"simulinksample.mat"';
+				this.attr1.filename = '"simulinksample.mat"';
 				break;
 			}
 			case 'gaussian': {
@@ -152,7 +146,6 @@
                 this.inPortPos = [];
                 this.outPorts = [1];
                 this.outPortPos = [75, 37];
-			    //this.ports = [0, 1];
 				this.position = [this.x, this.y, this.x + 30, this.y + 30]
 				this.attr.m = 0;//
 				this.attr.d = 1;//
@@ -166,7 +159,6 @@
                 this.outPortPos = [75, 37];
                 this.inPorts = [1];
                 this.inPortPos = [0, 37];
-                //this.ports = [1, 1];
                 this.position = [this.x, this.y, this.x + 30, this.y + 30]
                 this.attr.filttype = '"Lowpass"';//
                 this.attr.N = 8;//
@@ -228,7 +220,7 @@
                 this.attr.bias = arr[2];
                 break;
             }
-            case constant: {this.attr.Value = arr[0];break;}
+            case constant: {this.attr.value = arr[0];break;}
             case gain: {this.attr.gain = arr[0];break;}
             case gaussian: {
                 this.attr.m = arr[0];
@@ -257,11 +249,11 @@
             case 'sine': {
                 $(popUpWindow.find('input[type=text]')[0]).val(this.attr.amplitude);
                 $(popUpWindow.find('input[type=text]')[1]).val(this.attr.frequency);
-                $(popUpWindow.find('input[type=text]')[2]).val(this.attr.phase);
+                $(popUpWindow.find('input[type=text]')[2]).val(this.attr.bias);
                 break;
             }
             case 'constant': {
-                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.constant);
+                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.value);
                 break;
             }
             case 'gain': {
@@ -269,19 +261,18 @@
                 break;
             }
             case 'gaussian': {
-                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.mean);
-                $(popUpWindow.find('input[type=text]')[1]).val(this.attr.variance);
-                $(popUpWindow.find('input[type=text]')[2]).val(this.attr.initil);
+                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.m);
+                $(popUpWindow.find('input[type=text]')[1]).val(this.attr.d);
+                $(popUpWindow.find('input[type=text]')[2]).val(this.attr.s);
                 break;
             }
             case 'analog': {
-                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.filter);
-                $(popUpWindow.find('input[type=text]')[1]).val(this.attr.edge);
+                $(popUpWindow.find('input[type=text]')[0]).val(this.attr.N);
+                $(popUpWindow.find('input[type=text]')[1]).val(this.attr.Wlo);
                 break;
             }
             default: break;
         }
-
         popUpWindow.show(); 
     };
 
