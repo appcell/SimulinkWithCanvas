@@ -358,7 +358,6 @@
     }
 
     Line.prototype._reAssign = function() {
-
         if(this.srcBlock != -1) {
             var srcB = getItem(this.srcBlock);
             var srcP = this.srcPort;
@@ -503,9 +502,29 @@
                 break;
             }
             case 'era': {
+                var lineToDelete = [];
                 for (var x in items) {
                     if (isIntersected(eventX, eventY, items[x])) {
-                        items.splice(x, 1);     //
+                        lineToDelete.push(items[x].id);
+                        if(items[x] instanceof Component) {
+                            var id = items[x].id;
+                            for(var y in items){
+                                if(items[y] instanceof Line) {
+                				    var srcBlock = items[y].srcBlock;
+                				    var dstBlock = items[y].dstBlock;
+                                    if(id == srcBlock || id == dstBlock) {
+                                        lineToDelete.push(items[y].id);
+                                    }
+                                }
+                            }
+                        }
+                        for (var x in lineToDelete) {
+                            for (var y in items) {
+                                if(items[y].id == lineToDelete[x])
+                                    items.splice(y, 1);
+                            }
+                        }
+                        break;
                     }
                 }
                 break;
